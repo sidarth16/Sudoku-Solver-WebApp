@@ -1,0 +1,71 @@
+
+{% extends 'base.html' %}
+
+{% block main %}
+
+    
+   
+      <section id="result">
+        <div class="container">
+          <div class="row result-container" style="padding-top : 6.25%;">
+  
+            <div class="col-lg-6 social-links order-lg-2 order-2" style="padding-top: -20px;">
+                
+                <h3 class="title" style="padding-left: 30px;padding-top: 0px;">your Sudoku is Solved and Ready !!!</h3>
+                <br>
+                <div style="padding-left: 0%; color: aliceblue; font-size: large; text-align: center;">
+                  Select the numbers you want to be shown in the solution
+                </div>
+                <br>
+                <div style="padding-left: 120px;">
+                    <a {% if "1" in active_num %} style="background: #2dc997;" {% endif %}
+                       id="1"href="#"  onclick="myfun(id , '{{active_num}}')" >1</a> &nbsp;&nbsp;
+                    <a {% if "2" in active_num %} style="background: #2dc997;" {% endif %}
+                       id="2" href="#"  onclick="myfun(id , '{{active_num}}')" >2</a> &nbsp;&nbsp;
+                    <a {% if "3" in active_num %} style="background: #2dc997;" {% endif %}
+                       id="3" href="#"  onclick="myfun(id , '{{active_num}}')" >3</a> &nbsp;&nbsp;
+                    <a {% if "4" in active_num %} style="background: #2dc997;" {% endif %}
+                      id="4" href="#"  onclick="myfun(id , '{{active_num}}')" >4</a> &nbsp;&nbsp;
+                    <a {% if "5" in active_num %} style="background: #2dc997;" {% endif %}
+                       id="5" href="#"  onclick="myfun(id , '{{active_num}}') ">5</a> <br><br>
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a {% if "6" in active_num %} style="background: #2dc997;" {% endif %}
+                      id="6" href="#"  onclick="myfun(id , '{{active_num}}')" >6</a> &nbsp;&nbsp;
+                    <a {% if "7" in active_num %} style="background: #2dc997;" {% endif %}
+                      id="7" href="#"  onclick="myfun(id , '{{active_num}}')" >7</a> &nbsp;&nbsp;
+                    <a {% if "8" in active_num %} style="background: #2dc997;" {% endif %}
+                      id="8" href="#"  onclick="myfun(id , '{{active_num}}')" >8</a> &nbsp;&nbsp;
+                    <a {% if "9" in active_num %} style="background: #2dc997;" {% endif %}
+                       id="9" href='#'  onclick="myfun(id , '{{active_num}}')" >9</a> <br><br>
+                    <span style="padding-left: 75px;">
+
+                    <a 
+                      id="All" href="#"  onclick="myfun(id , '{{active_num}}')" style="width: 60px; border-radius: 40%">All</a>&nbsp;
+                    <a  
+                      id="None" href="#"  onclick="myfun(id , '{{active_num}}')" style="width: 60px; border-radius: 40%">None</a>
+                    <br><br>
+
+                    <span style="padding-left: 115px;">
+                      <a id="num_string" style="width: 60px; border-radius: 10%;"
+                          value="0" href="{{url_for('result')}}">Apply</a>
+                        <br><br>
+                    </span>                    
+                    
+                    </span>   
+                        
+                </div>
+                <a id="for_upload" style="width: 550px; border-radius: 0%; padding-left: -30px;"
+                href="{{url_for('upload')}}">upload a new sudoku and Try gain</a>  
+            </div>
+  
+            <div class="col-lg-6 background order-lg-1 order-1 wow fadeInLeft" >
+              <!-- <img src="static\img\sudoku\solved_cropped_sudoku.jpg" alt=""> -->
+              <img src="{{img_path}}" alt="" style="padding-left: 50px;"> 
+            </div>
+          </div>
+
+        </div>
+    </section><!-- End confirm Section -->
+ {% endblock %}
+  

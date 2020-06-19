@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+
+{% block main %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="solve">
+ 
+    <div class="solve-container">
+      <form action = 'confirm' method="post" enctype="multipart/form-data">
+        <h1 for="sudoku_raw_img">Upload your Sudoku Image File</h1>  
+        <!-- <label for="sudoku_raw_img">Sudoku Image File</label><br> -->
+        <input type="file"  class="btn-get-started-grey" name="sudoku_raw_img" > 
+        <br><br>
+        <!-- <input type="submit" value="Confirm">   -->
+
+          <button  class="btn-get-started" type="submit" >Next</button>
+          <br><br>
+        <a href="{{url_for('guide')}}" class="btn-to-guide" >
+            => Look through the guidelines once, to avoid faulty uploads and common errors 
+          </a>
+        </form> 
+    </div>
+  </section><!-- End Hero Section -->
+
+ {% endblock %}

@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %}
+
+{% block main %}
+    
+
+      <!-- ======= confirm Section ======= -->
+      
+    <!-- ======= About Section ======= -->
+    <section id="about">
+        <div class="container">
+          <div class="row about-container" style="padding-top:  6.25%;">
+  
+            <div class="col-lg-6 content order-lg-2 order-2">
+                <br>
+              <h2 class="title">Is this the cropped Sudoku to be solved</h2>
+              <a href="{{url_for('result')}}" class="btn-start-solve-green">Yes , Exactly</a>
+              <br>
+              <a href="{{url_for('upload')}}" class="btn-start-solve-red">NO  , Not This One</a>
+              <br>
+              <a href="{{url_for('confirm_again')}}" class="btn-start-solve-yellow">crop again</a>
+              
+            </div>
+  
+            <div class="col-lg-6 background order-lg-1 order-1 wow fadeInLeft">
+              <img src="{{crop_img_path}}" alt="">
+            </div>
+          </div>
+
+        </div>
+    </section><!-- End confirm Section -->
+      
+
+{% endblock %}

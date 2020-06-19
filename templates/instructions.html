@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+
+{% block main %}
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="container">
+    
+          <div id="logo" class="pull-left">
+            <a href="{{url_for('home')}}"><img src="static/img/logo.png" alt=""></a>
+            <!-- Uncomment below if you prefer to use a text logo -->
+            <!-- <h1><a href="#hero">Regna</a></h1> -->
+          </div>
+    
+          <nav id="nav-menu-container">
+            <ul class="nav-menu">
+              <li ><a href="{{url_for('home')}}">Home</a></li>
+              <li><a href="{{url_for('home',_anchor='intro')}}">Intro</a></li>
+              <li class="menu-has-children"><a href="">Sudoku</a>
+                <ul>
+                  <li><a href="{{url_for('upload')}}">Upload </a></li>
+                </ul>
+  
+              </li>
+              <li class="menu-active" ><a  href="{{url_for('guide')}}">Guide</a></li>
+              <li ><a href="{{url_for('home',_anchor='contact')}}">Contact Us</a></li>
+            </ul>
+          </nav><!-- #nav-menu-container -->
+        </div>
+      </header>
+      <!-- End Header -->
+  
+    
+        <main id="guide">
+            <section class="container" > 
+            <div  class="guide-container" style="padding-top: 10%; ">
+                <h1 >Some useful points for good prediction </h1>
+                <br><br>
+                <li>Upload Sudoku images with complete box , such that all four corner points are visible</li>
+                <li>Ensure the image doesnt have any such surrounding things which may disturb the extraction</li>
+                <li>PNG , JPG , JPEG images are only allowed</li>
+                <li>Ensure the grids are clear , and do not have any things ,writings or markings on them , as the system may consider them as a number</li>
+                <li>Avoid using images with watermarks on them.</li>
+                <li>Avoid using very colorful images</li>
+                <li>Crop the image again and again , before confirming such that no background comes into the main frame other than the sudoku grid as shown below </li>
+                <img src="static/img/upload_crop.jpg" width="80%" height="280" style="opacity: 0.75;">
+                <br>
+                <li>The solution may be wrong , if the cropped images has any of the above disturbances , if so try again with a more neat and clear image</li>
+                <br><br>
+                <a href="{{url_for('upload')}}" class="btn-start-strated" role="button">Upload Sudoku</a>
+                
+                <!-- <h1>Welcome to Sudoku Solver Zone</h1>
+                <h2>Take a picture and upload to solve it </h2>
+                <a href="#intro" class="btn-get-started">Get Started</a>
+               -->
+            </div>
+            </section>
+        </main>
+    
+    
+{% endblock %}
