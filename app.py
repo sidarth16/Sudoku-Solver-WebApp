@@ -65,7 +65,7 @@ def sudoku_filter_sol(req_num):
 app = Flask(__name__)
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def home():
     mydir = r"static/img/sudoku"
     if (len(os.listdir(mydir))>0):
