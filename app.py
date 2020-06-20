@@ -64,7 +64,7 @@ def sudoku_filter_sol(req_num):
 #NeuralModel.instance()
 app = Flask(__name__)
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-@app.route("/")
+
 @app.route("/home")
 def home():
     mydir = r"static/img/sudoku"
@@ -72,6 +72,10 @@ def home():
         for f in os.listdir(mydir):
             os.remove(os.path.join(mydir, f))
     return render_template('index.html' , page="home")
+
+@app.route("/")
+def slash():
+    return redirect(url_for('home'))
 
 @app.route("/confirm" , methods=["GET" , "POST"])
 def confirm():
