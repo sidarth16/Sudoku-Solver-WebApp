@@ -79,6 +79,7 @@ def confirm():
     print("Inside (confirm) raw_img_count = ",raw_img_count)
     raw_img_path=r"static\img\sudoku\raw_sudoku_{count}.jpg".format(count=str(raw_img_count))
     crop_img_path=r"static\img\sudoku\cropped_sudoku_{count}.jpg".format(count=str(raw_img_count))
+    crop_img_path = url_for('static', filename='img\sudoku\cropped_sudoku_{count}.jpg'.format(count=str(raw_img_count)))
     if request.method=="POST":
         img = request.files['sudoku_raw_img']
         if(img.filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS) :
