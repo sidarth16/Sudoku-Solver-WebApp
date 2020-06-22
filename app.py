@@ -67,10 +67,10 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 @app.route("/")
 @app.route("/home")
 def home():
-    mydir = r"static/img/sudoku"
-    if (len(os.listdir(mydir))>0):
-        for f in os.listdir(mydir):
-            os.remove(os.path.join(mydir, f))
+#     mydir = r"static/img/sudoku"
+#     if (len(os.listdir(mydir))>0):
+#         for f in os.listdir(mydir):
+#             os.remove(os.path.join(mydir, f))
     return render_template('index.html' , page="home")
 
 @app.route("/confirm" , methods=["GET" , "POST"])
