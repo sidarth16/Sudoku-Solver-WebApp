@@ -282,6 +282,7 @@ def sudoku_crop_solve_save(count , required_num_in_sol="123456789"):
         cropped_sudoku_450 = cv2.resize(cropped_sudoku , (450,450))
         solved_cropped_sudoku = cv2.resize(solved_cropped_sudoku , (450,450))
         cv2.imwrite(base+r"\cropped_sudoku_{count}.jpg".format(count=str(count)) , cropped_sudoku_450)
+        cv2.imwrite(url_for('static', filename='img\sudoku\cropped_sudoku_{count}.jpg'.format(count=str(count))) , cropped_sudoku_450)
         cv2.imwrite(base+r"\solved_cropped{count}_sudoku_0.jpg".format(count=str(count)) , solved_cropped_sudoku)
         cv2.imwrite(base+r"\img_final.jpg",img_final)
 
