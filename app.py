@@ -2,7 +2,7 @@
 # coding: utf-8
 
 
-from __future__ import absolute_import, division, print_function, unicode_literals
+# from __future__ import absolute_import, division, print_function, unicode_literals
 
 
 import pickle
@@ -11,18 +11,18 @@ from pickle import dump
 
 from tensorflow import keras
 import numpy as np
-from flask import Flask, request, jsonify, render_template,redirect,flash,send_file
+# from flask import Flask, request, jsonify, render_template,redirect,flash,send_file
 
 import os
-import urllib.request
+# import urllib.request
 
 
 from flask import Flask , render_template , request , redirect, url_for,flash
 from werkzeug.utils import secure_filename
-from sudoku_main import sudoku_crop_solve_save
+# from sudoku_main import sudoku_crop_solve_save
 
 
-import cv2
+# import cv2
 
 
 # solution, existing_numbers ,sudoku , cropped_sudoku = 0,0,0,0
