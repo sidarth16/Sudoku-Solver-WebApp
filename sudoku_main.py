@@ -29,7 +29,7 @@ def sudoku_main(img , corners , required_num_in_sol=""):
 
     solution,existing_numbers = sudoku.solve(img_cropped_sudoku, approximate=0.95 , required_num_in_sol= required_num_in_sol)
     print(solution)
-    disp("extracted_digits" , sudoku.grid[4,2].image)
+    #disp("extracted_digits" , sudoku.grid[4,2].image)
     
     img_sudoku_final = unwarp_image(img_cropped_sudoku, transformation_matrix_inv, original_shape , output_shape )
     img_final = blend_with_original(img, img_sudoku_final)
