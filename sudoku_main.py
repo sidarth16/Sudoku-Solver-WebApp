@@ -28,6 +28,8 @@ def sudoku_main(img , corners , required_num_in_sol=""):
     #disp("predicted_unsolved_grid" , predicted_unsolved_grid)
 
     solution,existing_numbers = sudoku.solve(img_cropped_sudoku, approximate=0.95 , required_num_in_sol= required_num_in_sol)
+    print(solution)
+    disp("extracted_digits" , sudoku.grid[4,2].image)
     
     img_sudoku_final = unwarp_image(img_cropped_sudoku, transformation_matrix_inv, original_shape , output_shape )
     img_final = blend_with_original(img, img_sudoku_final)
@@ -270,25 +272,34 @@ def predicted_input_grid(sudoku):
 
 
 
-def sudoku_crop_solve_save(count , required_num_in_sol="123456789"):
+def get_img_url(image):
+    import base64
+    image_content = cv2.imencode('.jpg', image)[1].tostring()
+    encoded_image = base64.encodestring(image_content)
+    image_url = 'data:image/jpg;base64, ' + str(encoded_image, 'utf-8')
+    return image_url
+
+def sudoku_crop_solve_save(image , count , required_num_in_sol="123456789"):
     
     raw_img_path=r"static\img\sudoku\raw_sudoku_{count}.jpg".format(count=str(count))
     base=r"static\img\sudoku"
     img = cv2.imread(raw_img_path)
-    
+    img=image.copy()
+    # disp("img" , img)
     corners = get_sudoku_box(img , draw_contours=True)
     if corners is not None:
         solution,existing_numbers,cropped_sudoku , sudoku_crop_thresh , extracted_digits ,predicted_unsolved_grid, solved_cropped_sudoku , img_final , sudoku = sudoku_main(img , corners , required_num_in_sol=required_num_in_sol)
         cropped_sudoku_450 = cv2.resize(cropped_sudoku , (450,450))
         solved_cropped_sudoku = cv2.resize(solved_cropped_sudoku , (450,450))
+        # disp("solved_cropped_sudoku" , img_final)
         cv2.imwrite(base+r"\cropped_sudoku_{count}.jpg".format(count=str(count)) , cropped_sudoku_450)
-        cv2.imwrite(url_for('static', filename='img\sudoku\cropped_sudoku_{count}.jpg'.format(count=str(count))) , cropped_sudoku_450)
         cv2.imwrite(base+r"\solved_cropped{count}_sudoku_0.jpg".format(count=str(count)) , solved_cropped_sudoku)
         cv2.imwrite(base+r"\img_final.jpg",img_final)
-
-        print(solution)
-        return solution , existing_numbers , sudoku , cropped_sudoku
+        cropped_sudoku_url = get_img_url(cropped_sudoku_450)
+        solved_sudoku_url = get_img_url(solved_cropped_sudoku)
+        
+        #print(solution)
+        return solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url
     else:
-        return False , False , False , False
-    
+        return False , False , False , False , False , False
     
