@@ -162,7 +162,8 @@ def result_filter(num="All"):
     global raw_img_count
     print("Inside (result_filter) raw_img_count = ",raw_img_count)
     if(solution==0):
-        return redirect(url_for('upload'))
+        print("solution=0 and num = ",num)
+        #return redirect(url_for('upload'))
     print("in result_filter route")
     global active_num
     if(num):
