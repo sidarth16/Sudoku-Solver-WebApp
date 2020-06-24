@@ -39,8 +39,8 @@ def sudoku_ready():
     global solution , existing_numbers , sudoku ,cropped_sudoku ,raw_img_count , img_count , active_num
     global cropped_sudoku_url,solved_sudoku_url
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol="0")
-#     print(sudoku)
-    if(cropped_sudoku) :
+#   print(sudoku)
+    if(sudoku) :
         img_count=0
         active_num=""
         print("sudoku_ready")
@@ -56,7 +56,7 @@ def sudoku_filter_sol(req_num):
     img_name = "solved_cropped{no}_sudoku_{count}.jpg".format(no=raw_img_count, count=img_count)
     img_path = r"static\img\sudoku\{}".format(img_name)
 
-    if(cropped_sudoku==False):
+    if(cropped_sudoku.all()==False):
         return redirect(url_for("upload"))
     
     cropped_sudoku_copy = cropped_sudoku.copy() 
