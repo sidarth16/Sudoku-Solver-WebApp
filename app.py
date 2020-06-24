@@ -39,12 +39,11 @@ def sudoku_ready():
     global solution , existing_numbers , sudoku ,cropped_sudoku ,raw_img_count , img_count , active_num
     global cropped_sudoku_url,solved_sudoku_url
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol="0")
-    print(sudoku)
-    if sudoku :
+#     print(sudoku)
+    if(sudoku) :
         img_count=0
         active_num=""
         print("sudoku_ready")
-        
         return True
     else :
         return False
@@ -60,8 +59,10 @@ def sudoku_filter_sol(req_num):
     cropped_sudoku_copy = cropped_sudoku.copy() 
     sudoku.write_solution(cropped_sudoku_copy, solution, ignore=existing_numbers ,required_num_in_sol =req_num)
     solved_cropped_sudoku_copy = cv2.resize(cropped_sudoku_copy , (450,450))
+    
     from sudoku_main import get_img_url
     solved_sudoku_url = get_img_url(solved_cropped_sudoku_copy)
+    
     cv2.imwrite( img_path, solved_cropped_sudoku_copy )
     return True
 
@@ -160,8 +161,8 @@ def result():
 def result_filter(num="All"):
     global raw_img_count
     print("Inside (result_filter) raw_img_count = ",raw_img_count)
-    if solution==0:
-        sudoku_ready()
+    if(solution==0):
+        return redirect(url_for('upload'))
     print("in result_filter route")
     global active_num
     if(num):
