@@ -57,7 +57,8 @@ def sudoku_filter_sol(req_num):
     img_path = r"static\img\sudoku\{}".format(img_name)
 
     if(cropped_sudoku.all()==False):
-        return redirect(url_for("upload"))
+        return False
+        #return redirect(url_for("upload"))
     
     cropped_sudoku_copy = cropped_sudoku.copy() 
     sudoku.write_solution(cropped_sudoku_copy, solution, ignore=existing_numbers ,required_num_in_sol =req_num)
@@ -174,6 +175,9 @@ def result_filter(num="All"):
         print("required_num_in_sol = "+num)
         if(sudoku_filter_sol(num)):
             print("solution filtered successfully")
+        else:
+            return redirect(url_for('result/'+num))
+            
     else:
         active_num=""
         sudoku_filter_sol("All")
