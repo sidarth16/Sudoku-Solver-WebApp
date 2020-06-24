@@ -56,7 +56,7 @@ def sudoku_filter_sol(req_num):
     img_name = "solved_cropped{no}_sudoku_{count}.jpg".format(no=raw_img_count, count=img_count)
     img_path = r"static\img\sudoku\{}".format(img_name)
 
-    if(!cropped_sudoku):
+    if(cropped_sudoku==False):
         return redirect(url_for("upload"))
     
     cropped_sudoku_copy = cropped_sudoku.copy() 
