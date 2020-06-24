@@ -40,7 +40,7 @@ def sudoku_ready():
     global cropped_sudoku_url,solved_sudoku_url
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol="0")
 #     print(sudoku)
-    if(sudoku) :
+    if(cropped_sudoku!=0) :
         img_count=0
         active_num=""
         print("sudoku_ready")
