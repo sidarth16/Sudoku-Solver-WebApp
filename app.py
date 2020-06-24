@@ -25,7 +25,7 @@ from sudoku_main import sudoku_crop_solve_save
 import cv2
 
 
-solution, existing_numbers ,sudoku , cropped_sudoku = 0,0,0,0
+solution, existing_numbers ,sudoku , cropped_sudoku = 0,0,0,False
 raw_image=0
 raw_img_count=0
 raw_img_path=r"static\img\sudoku\raw_sudoku_{count}.jpg".format(count=str(raw_img_count))
@@ -40,7 +40,7 @@ def sudoku_ready():
     global cropped_sudoku_url,solved_sudoku_url
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol="0")
 #     print(sudoku)
-    if(cropped_sudoku!=0) :
+    if(cropped_sudoku) :
         img_count=0
         active_num=""
         print("sudoku_ready")
@@ -56,6 +56,9 @@ def sudoku_filter_sol(req_num):
     img_name = "solved_cropped{no}_sudoku_{count}.jpg".format(no=raw_img_count, count=img_count)
     img_path = r"static\img\sudoku\{}".format(img_name)
 
+    if(!cropped_sudoku):
+        return redirect(url_for("upload"))
+    
     cropped_sudoku_copy = cropped_sudoku.copy() 
     sudoku.write_solution(cropped_sudoku_copy, solution, ignore=existing_numbers ,required_num_in_sol =req_num)
     solved_cropped_sudoku_copy = cv2.resize(cropped_sudoku_copy , (450,450))
