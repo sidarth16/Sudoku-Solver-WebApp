@@ -53,21 +53,22 @@ def sudoku_filter_sol(req_num):
         req_num="123456789"
     global img_count , img_path , img_name , solved_sudoku_url
     img_count=req_num
-    img_name = "solved_cropped{no}_sudoku_{count}.jpg".format(no=raw_img_count, count=img_count)
-    img_path = r"static\img\sudoku\{}".format(img_name)
+    solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol=req_num)
+#     img_name = "solved_cropped{no}_sudoku_{count}.jpg".format(no=raw_img_count, count=img_count)
+#     img_path = r"static\img\sudoku\{}".format(img_name)
 
-    if(cropped_sudoku.all()==False):
-        return False
-        #return redirect(url_for("upload"))
+#     if(cropped_sudoku.all()==False):
+#         return False
+#         #return redirect(url_for("upload"))
     
-    cropped_sudoku_copy = cropped_sudoku.copy() 
-    sudoku.write_solution(cropped_sudoku_copy, solution, ignore=existing_numbers ,required_num_in_sol =req_num)
-    solved_cropped_sudoku_copy = cv2.resize(cropped_sudoku_copy , (450,450))
+#     cropped_sudoku_copy = cropped_sudoku.copy() 
+#     sudoku.write_solution(cropped_sudoku_copy, solution, ignore=existing_numbers ,required_num_in_sol =req_num)
+#     solved_cropped_sudoku_copy = cv2.resize(cropped_sudoku_copy , (450,450))
     
-    from sudoku_main import get_img_url
-    solved_sudoku_url = get_img_url(solved_cropped_sudoku_copy)
+#     from sudoku_main import get_img_url
+#     solved_sudoku_url = get_img_url(solved_cropped_sudoku_copy)
     
-    cv2.imwrite( img_path, solved_cropped_sudoku_copy )
+#     cv2.imwrite( img_path, solved_cropped_sudoku_copy )
     return True
 
 
