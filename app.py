@@ -77,6 +77,7 @@ def sudoku_filter_sol(req_num):
 #from neural_model import NeuralModel
 #NeuralModel.instance()
 app = Flask(__name__)
+app.secret_key = 'A1B2C3D4E4F5G6HI78JKLMNOPQRST1324354657687980'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 @app.route("/")
 @app.route("/home")
@@ -195,7 +196,7 @@ def guide():
     return render_template('instructions.html' , page="guide")
 
 if __name__ == "__main__":
-    app.secret_key = 'super secret key'
+    
     app.run(debug=True , threaded=False )
 # if app.config["DEBUG"]:
 #     @app.after_request
