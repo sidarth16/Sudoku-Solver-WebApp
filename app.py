@@ -51,7 +51,7 @@ def sudoku_ready():
     
     encodedNumpyData = session["raw_image"]
     decodedArrays = json.loads(encodedNumpyData)
-    finalNumpyArrayOne = numpy.asarray(decodedArrays["raw_image"])
+    finalNumpyArrayOne = np.asarray(decodedArrays["raw_image"])
     raw_image = finalNumpyArrayOne
 
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol="0")
@@ -72,7 +72,7 @@ def sudoku_filter_sol(req_num):
     
     encodedNumpyData = session["raw_image"]
     decodedArrays = json.loads(encodedNumpyData)
-    finalNumpyArrayOne = numpy.asarray(decodedArrays["raw_image"])
+    finalNumpyArrayOne = np.asarray(decodedArrays["raw_image"])
     raw_image = finalNumpyArrayOne
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol=req_num)
 #     img_name = "solved_cropped{no}_sudoku_{count}.jpg".format(no=raw_img_count, count=img_count)
