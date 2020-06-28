@@ -24,6 +24,16 @@ from sudoku_main import sudoku_crop_solve_save
 
 import cv2
 
+import numpy as np
+from json import JSONEncoder
+import json
+
+class NumpyArrayEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return JSONEncoder.default(self, obj)
+
 
 solution, existing_numbers ,sudoku , cropped_sudoku = 0,0,0,False
 raw_image=0
@@ -38,7 +48,12 @@ cropped_sudoku_url,solved_sudoku_url= 0,0
 def sudoku_ready():
     global solution , existing_numbers , sudoku ,cropped_sudoku ,raw_img_count , img_count , active_num
     global cropped_sudoku_url,solved_sudoku_url
-    raw_image = session["raw_image"]
+    
+    encodedNumpyData = session["raw_image"]
+    decodedArrays = json.loads(encodedNumpyData)
+    finalNumpyArrayOne = numpy.asarray(decodedArrays["raw_image"])
+    raw_image = finalNumpyArrayOne
+
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol="0")
     print(solution)
     if(sudoku) :
@@ -54,7 +69,11 @@ def sudoku_filter_sol(req_num):
         req_num="123456789"
     global img_count , img_path , img_name , solved_sudoku_url
     img_count=req_num
-    raw_image = session["raw_image"]
+    
+    encodedNumpyData = session["raw_image"]
+    decodedArrays = json.loads(encodedNumpyData)
+    finalNumpyArrayOne = numpy.asarray(decodedArrays["raw_image"])
+    raw_image = finalNumpyArrayOne
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol=req_num)
 #     img_name = "solved_cropped{no}_sudoku_{count}.jpg".format(no=raw_img_count, count=img_count)
 #     img_path = r"static\img\sudoku\{}".format(img_name)
@@ -106,7 +125,8 @@ def confirm():
             image = np.asarray(Image.open(img.stream))
             global raw_image
             raw_image = image
-            session["raw_image"] = raw_image
+            encodedNumpyData=json.dumps(raw_image,  cls=NumpyArrayEncoder)
+            session["raw_image"] = encodedNumpyData
             print("image.shape : ",image.shape)
             
             #image_url = 
