@@ -11,7 +11,7 @@ from pickle import dump
 
 from tensorflow import keras
 import numpy as np
-from flask import Flask, request, jsonify, render_template,redirect,flash,send_file
+from flask import Flask, request, jsonify, render_template,redirect,flash,send_file,session
 
 import os
 import urllib.request
@@ -38,6 +38,7 @@ cropped_sudoku_url,solved_sudoku_url= 0,0
 def sudoku_ready():
     global solution , existing_numbers , sudoku ,cropped_sudoku ,raw_img_count , img_count , active_num
     global cropped_sudoku_url,solved_sudoku_url
+    raw_image = session["raw_image"]
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol="0")
     print(solution)
     if(sudoku) :
@@ -53,6 +54,7 @@ def sudoku_filter_sol(req_num):
         req_num="123456789"
     global img_count , img_path , img_name , solved_sudoku_url
     img_count=req_num
+    raw_image = session["raw_image"]
     solution , existing_numbers , sudoku , cropped_sudoku , cropped_sudoku_url,solved_sudoku_url= sudoku_crop_solve_save(raw_image , raw_img_count , required_num_in_sol=req_num)
 #     img_name = "solved_cropped{no}_sudoku_{count}.jpg".format(no=raw_img_count, count=img_count)
 #     img_path = r"static\img\sudoku\{}".format(img_name)
@@ -103,6 +105,7 @@ def confirm():
             image = np.asarray(Image.open(img.stream))
             global raw_image
             raw_image = image
+            session["raw_image"] = raw_image
             print("image.shape : ",image.shape)
             
             #image_url = 
