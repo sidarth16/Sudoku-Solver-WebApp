@@ -14,4 +14,4 @@ Keras==2.3.1
 opencv_python==4.1.2.30
 numpy_ringbuffer==0.2.1
 fuzzywuzzy==0.18.0
-Pillow==7.1.2
+Pillow==9.0.1
